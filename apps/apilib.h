@@ -68,6 +68,8 @@ int api_fwrite(char *buf, int maxsize, int fhandle);
 void api_sysinfo(struct SYSINFO *sysinfo);
 int api_getmemalgo(void);
 int api_getmemmap(struct MEMMAP_ENTRY *entries, int max_entries, int *free_bytes);
+int api_getdsbase(void);
+unsigned int api_virt2phys(void *ptr);
 
 /* api70-api79: 内存文件系统（memfs） */
 int api_memfs_format(int disk_kb);

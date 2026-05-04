@@ -864,9 +864,6 @@ int *hrb_api(int edi, int esi, int ebp, int esp, int ebx, int edx, int ecx, int 
 				sheet_refresh(sht, esi, edi, esi + ecx * 8, edi + 16);
 			}
 			break;
-		case 7:
-			sht = (struct SHEET *) (ebx & 0xfffffffe);
-			boxfill8(sht->buf, sht->bxsize, ebp, eax, ecx, esi, edi);
 			if ((ebx & 1) == 0) {
 				sheet_refresh(sht, eax, ecx, esi + 1, edi + 1);
 			}
@@ -1088,6 +1085,12 @@ int *hrb_api(int edi, int esi, int ebp, int esp, int ebx, int edx, int ecx, int 
 			break;
 		case 37:
 			reg[7] = memman_get_algo_id();
+			break;
+		case 78:
+			reg[7] = ds_base;
+			break;
+		case 80:
+			reg[7] = (unsigned int) (ebx + ds_base);
 			break;
 
 		/* memfs: api70 - api77 */

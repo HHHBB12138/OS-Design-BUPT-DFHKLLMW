@@ -15,7 +15,7 @@ DEL      = del
 # Options: LEGACY, FIRST_FIT, NEXT_FIT, BEST_FIT, WORST_FIT
 MEM_ALLOC_ALGO ?= LEGACY
 
-APP_DIRS = 2dball about calc counter cpuid csvv cvtg date gview hview invader mtorz music note pc tview type video
+APP_DIRS = 2dball about calc counter cpuid csvv cvtg date gview hview invader ldtaddr mtorz music note pc tview type video
 APP_HELS = \
 	apps/2dball/2dball.hel \
 	apps/about/about.hel \
@@ -28,6 +28,7 @@ APP_HELS = \
 	apps/gview/gview.hel \
 	apps/hview/hview.hel \
 	apps/invader/invader.hel \
+	apps/ldtaddr/ldtaddr.hel \
 	apps/memmap/memmap.hel \
 	apps/memfstest/mfstest.hel \
 	apps/mtorz/mtorz.hel \
@@ -58,6 +59,7 @@ apps : libs
 	$(MAKE) -C ./apps/gview
 	$(MAKE) -C ./apps/hview
 	$(MAKE) -C ./apps/invader
+	$(MAKE) -C ./apps/ldtaddr
 	$(MAKE) -C ./apps/memmap
 	$(MAKE) -C ./apps/memfstest
 	$(MAKE) -C ./apps/mtorz
@@ -101,6 +103,7 @@ Helo_OS.img : kernel/ipl20.bin kernel/Helo_OS.sys $(APP_HELS) Makefile
 		copy from:apps/memmap/memmap.hel to:@: \
 		copy from:apps/memfstest/mfstest.hel to:@: \
 		copy from:apps/mtorz/mtorz.hel to:@: \
+		copy from:apps/ldtaddr/ldtaddr.hel to:@: \
 		copy from:data/daigo.mld to:@: \
 		copy from:data/daiku.mld to:@: \
 		copy from:data/star.mld to:@: \
@@ -135,6 +138,7 @@ clean :
 	-$(MAKE) -C ./apps/music src_only
 	-$(MAKE) -C ./apps/note src_only
 	-$(MAKE) -C ./apps/pc src_only
+	-$(MAKE) -C ./apps/ldtaddr src_only
 	-$(MAKE) -C ./apps/tview src_only
 	-$(MAKE) -C ./apps/type src_only
 	-$(MAKE) -C ./apps/video src_only
